@@ -1,11 +1,9 @@
-// Declare all variables used
-	var height, width, color, row, column, tr, td, table, id;
-
+var id;
 // When size is submitted by the user, call makeGrid()
 	$("#sizePicker").submit(function(event){
 	event.preventDefault();
-	height= $("#inputHeight").val();
-	width= $("#inputWeight").val();
+	let height= $("#inputHeight").val();
+	let width= $("#inputWeight").val();
 	makeGrid(height, width);
 	})
 
@@ -14,16 +12,17 @@
 	
 //clear previous table(Clears previous Grid In cases where user resubmit form without refreshing page)
 	
-	table=$("table");
-	tr=table.find('tr');
-	td=table.find('td');
+	let table=$("table");
+	let tr=table.find('tr');
+	let td=table.find('td');
 	td.remove();
 	tr.remove();
 	
 //construct Grid
-	for (column=1; column<=height; column++){
-	$("#pixelCanvas").append("<tr></tr>");
-	for(row=1; row<=width; row++){
+		const Canvas=$("#pixelCanvas");
+	for (let column=1; column<=height; column++){
+	Canvas.append("<tr></tr>");
+	for(let row=1; row<=width; row++){
 //Generate Unique Numeric Id for each td
 	id=column+""+row;
 			$("tr:last").append("<td onclick=coloring("+id+") id="+id+"></td>");
@@ -38,7 +37,7 @@
 	}	
 	else{
 	//if no color exist in the cell, set selected color
-	color=document.getElementById("colorPicker").value;
+	let color=document.getElementById("colorPicker").value;
 	document.getElementById(id).style.backgroundColor=color;	 
 }
 }
